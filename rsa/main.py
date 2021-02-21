@@ -1,11 +1,17 @@
+from typing import List
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
-class Message(BaseModel):
-    message: str
-    pattern : str
+class Enc_Message(BaseModel):
+    p: int
+    q : int
+    message : str
 
+class Dec_Message(BaseModel) : 
+    p : int
+    q : int
+    cry : List[int]
 
 app = FastAPI()
 
@@ -27,7 +33,15 @@ async def root():
 
 
 @app.post('/encrypt')
-async def encryptMessage(msg : Message) :
+async def encryptMessage(msg : Enc_Message) :
+    pass 
+    # d = 256
+    # q = 3
+    # x = rabin_karp_matcher(msg.message, msg.pattern, d, q)
+    # return {'message' : x}
+
+@app.post('/decrypt')
+async def decryptMessage(msg : Dec_Message) :
     pass 
     # d = 256
     # q = 3
